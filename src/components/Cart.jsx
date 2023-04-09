@@ -1,11 +1,15 @@
 import { Link, useLoaderData } from "react-router-dom";
 import CartItem from "./Cards/CartItem";
-import { removeFromDB } from "../utils/fakeDB";
+import { deleteCartFromDB, removeFromDB } from "../utils/fakeDB";
 
 const Cart = () => {
   const { cartData, products } = useLoaderData();
   const handleRemoveItem = (id) => {
     removeFromDB(id);
+  };
+
+  const deleteCartHandler = () => {
+    deleteCartFromDB();
   };
 
   let total = 0;
@@ -41,7 +45,12 @@ const Cart = () => {
         </div>
         <div className="flex justify-end space-x-4">
           {cartData.length > 0 ? (
-            <button className="btn-outlined">Clear Cart</button>
+            <button
+              onClick={deleteCartHandler}
+              className="btn-outlined"
+            >
+              Clear Cart
+            </button>
           ) : (
             <Link to="/shop">
               <button className="btn-outlined">Back To Shop</button>
