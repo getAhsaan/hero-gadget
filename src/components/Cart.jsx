@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import CartItem from "./Cards/CartItem";
 
 const Cart = () => {
@@ -33,6 +33,16 @@ const Cart = () => {
           <p className="text-sm text-gray-400">
             Not including taxes and shipping costs
           </p>
+        </div>
+        <div className="flex justify-end space-x-4">
+          {cartData.length > 0 ? (
+            <button className="btn-outlined">Clear Cart</button>
+          ) : (
+            <Link to="/shop">
+              <button className="btn-outlined">Back To Shop</button>
+            </Link>
+          )}
+          <button className="btn-primary">Place Order</button>
         </div>
       </div>
     </div>
