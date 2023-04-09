@@ -1,8 +1,12 @@
 import { Link, useLoaderData } from "react-router-dom";
 import CartItem from "./Cards/CartItem";
+import { removeFromDB } from "../utils/fakeDB";
 
 const Cart = () => {
   const { cartData, products } = useLoaderData();
+  const handleRemoveItem = (id) => {
+    removeFromDB(id);
+  };
 
   let total = 0;
 
@@ -23,6 +27,7 @@ const Cart = () => {
             <CartItem
               key={product.id}
               product={product}
+              handleRemoveItem={handleRemoveItem}
             />
           ))}
         </ul>
